@@ -14,15 +14,32 @@
         <div class="input-label">
           What type of meal?
         </div>
-        <select ng-model="selectModel">
+        <select ng-model="selectModel" ng-click="onSelect()">
           <option ng-repeat="option in typeOfMeals">{{option.type}}</option>
         </select>
       </label>
     </div>
     <!-- EO | User Input -->
 
+
+    <!-- Loading data spinner -->
+    <div class="headStyle" ng-show="!isLoaded" >
+      <ion-spinner icon="android" class="spinner-assertive"></ion-spinner>
+    </div>
+
     <!-- Results for selected type -->
-    <h4 ng-show="selectModel != null" class="headStyle">Showing restaurants for "{{selectModel}}"</h4>
+    <h4 ng-show="selectModel != null && isLoaded == true" class="headStyle">Showing restaurants for "{{selectModel}}"</h4>
+    <div class="list customMargin">
+
+      <a class="item item-thumbnail-left" href="#">
+        <img src="../img/res-logo.jpg">
+        <h2>Restaurant name</h2>
+        <p>Delivery time: XXX</p>
+      </a>
+
+    </div>
+
+
 
   </ion-content>
 </ion-view>
