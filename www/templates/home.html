@@ -14,8 +14,8 @@
         <div class="input-label">
           What type of meal?
         </div>
-        <select ng-model="selectModel" ng-click="onSelect()">
-          <option ng-repeat="option in typeOfMeals">{{option.type}}</option>
+
+        <select ng-model="selectModel" ng-change="selectValue(selectModel)" ng-options="option.type for option in typeOfMeals track by option.id">
         </select>
       </label>
     </div>
@@ -27,16 +27,20 @@
       <ion-spinner icon="android" class="spinner-assertive"></ion-spinner>
     </div>
 
+
     <!-- Results for selected type -->
-    <h4 ng-show="selectModel != null && isLoaded == true" class="headStyle">Showing restaurants for "{{selectModel}}"</h4>
-    <div class="list customMargin">
-
+    <h4 ng-show="selectModel != null && isLoaded == true" class="headStyle">Showing restaurants for "{{selectModel.type}}"</h4>
+    <div class="list customMargin" ng-repeat="data in showItems"  ng-hide="showItems.length == 0">
       <a class="item item-thumbnail-left" href="#">
-        <img src="../img/res-logo.jpg">
-        <h2>Restaurant name</h2>
-        <p>Delivery time: XXX</p>
+        <img ng-src="{{data.imgSrc}}">
+        <h2>{{data.name}}</h2>
+        <p>Type: {{data.type}}</p>
+        <p>Delivery time: {{data.deliveryTime}}</p>
       </a>
+    </div>
 
+    <div class="headStyle" ng-show="selectModel != null && showItems.length == 0">
+      No restaurants available for {{selectModel.type}}
     </div>
 
 
