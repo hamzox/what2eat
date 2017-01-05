@@ -1,3 +1,5 @@
+/** my css **/
+
 .headStyle {
   text-align: center;
   padding-top: 20px;
@@ -5,7 +7,16 @@
 .customMargin {
   margin-top: 20px;
 }
-
+.customAlignment {
+  margin: 0 auto;
+  width: 90%;
+}
+.list-shadow {
+  box-shadow: 0px 1px 15px -5px rgba(0,0,0,0.92);
+}
+.item-options {
+  height: 99%;
+}
 /*custom is class added to ion-content*/
 
 .custom {
@@ -38,3 +49,4 @@
 .custom a {
   color: white;  /*Text color for each item, overrides the color property above*/
 }
+

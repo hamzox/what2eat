@@ -1,6 +1,31 @@
+
 <ion-view view-title="My Items">
   <ion-content class="headStyle">
-    <button class="button button-icon ion-compose" ng-click="modal.show()">
-    </button>
+    <div class="customAlignment">
+
+      <button class="button button-block button-assertive item item-icon-right" ng-click="modal.show();addModal()">
+        <i class="icon ion-ios-plus-outline"></i>
+        Add new item
+      </button>
+
+      <button class="button button-block button-assertive item item-icon-right" ng-click="deleteButtons = !deleteButtons">
+        <i class="icon ion-ios-minus-outline"></i>
+        Delete by select
+      </button>
+
+        <ion-list class="headStyle" show-delete="deleteButtons" ng-show="myItems.length > 0">
+          <ion-item class="list list-shadow item-thumbnail-left" ng-repeat="item in myItems | reverseList ">
+              <img src="../img/custom-res-logo.png">
+              <h2><b>{{item.itemName}}</b></h2>
+              <p>{{item.itemRestaurant}}</p>
+
+              <ion-delete-button class="ion-minus-circled" ng-click="deleteItem(item)"></ion-delete-button>
+
+              <ion-option-button class="button-energized" ng-click="deleteItem(item)">Delete</ion-option-button>
+              <ion-option-button class="button-assertive" ng-click="modal.show();editModal(item)">Edit</ion-option-button>
+          </ion-item>
+        </ion-list>
+
+    </div>
   </ion-content>
 </ion-view>
