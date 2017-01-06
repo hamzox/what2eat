@@ -1,32 +1,33 @@
 <ion-view class="bar-calm" view-title="Home">
   <ion-content>
 
+    <div class="customMargin" style="text-align: center">
+      <img src="../img/logo.png" style="width:350px" alt="">
+    </div>
+
     <!-- User Input -->
     <h4 class="headStyle"><b>Hunger level?</b></h4>
-    <div class="item range range-royal customMargin">
+    <div class="range range-royal customMargin">
       <span>0</span>
-      <input type="range" name="hunger" ng-model="value" min="0" max="10">
+      <input class="range range-assertive" type="range" name="hunger" ng-model="value" min="0" max="10">
       <span>{{value}}</span>
     </div>
     <h4 class="headStyle"><b>What to eat?</b></h4>
-    <div class="list customMargin">
+    <div class="customMargin">
       <label class="item item-input item-select">
         <div class="input-label">
           What type of meal?
         </div>
-
         <select ng-model="selectModel" ng-change="selectValue(selectModel)" ng-options="option.type for option in typeOfMeals track by option.id">
         </select>
       </label>
     </div>
     <!-- EO | User Input -->
 
-
     <!-- Loading data spinner -->
     <div class="headStyle" ng-show="!isLoaded" >
       <ion-spinner icon="android" class="spinner-assertive"></ion-spinner>
     </div>
-
 
     <!-- Results for selected type -->
     <h4 ng-show="selectModel != null && isLoaded == true" class="headStyle">Showing restaurants for "{{selectModel.type}}"</h4>
@@ -42,8 +43,6 @@
     <div class="headStyle" ng-show="selectModel != null && showItems.length == 0">
       No restaurants available for {{selectModel.type}}
     </div>
-
-
 
   </ion-content>
 </ion-view>

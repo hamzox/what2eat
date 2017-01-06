@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-  .service('GetDataService' , function() {
+  .service('GetDataService'  ,function() {
     var vm = this;
     vm.loadData = function (obj,scope) {
       obj.$loaded().then(function() {
@@ -27,10 +27,3 @@ angular.module('starter.services', [])
     }
   })
 
-  .service('SendDataService', function () {
-    var vm=this;
-
-    vm.sendData =function (obj) {
-
-    }
-  })
