@@ -4,6 +4,8 @@ angular.module('starter.filters', [])
 
 function reverseList() {
   return function(items) {
-    return items.slice().reverse();
+    if (items != undefined) {
+      return items.slice().reverse();
+    }
   };
 }

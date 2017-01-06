@@ -7,14 +7,14 @@ angular.module('starter.controllers', [])
 function AppCtrl($scope,$localStorage) {
 
   var makeId = Math.floor(Date.now());
-  $scope.myId = $localStorage.userId;
   generateUserId(makeId); // set user id to local storage on first run of application.
 
   function generateUserId (id) {
-    if ($localStorage.userId.length == 0) {
+    if (!$localStorage.hasOwnProperty("userId")) {
       $localStorage.userId = id;
       sendData(id);
     }
+    $scope.myId = $localStorage.userId;
   }
   function sendData(uid) {
     var ref = firebase.database().ref('/users');
@@ -81,8 +81,8 @@ function myItemsCtrl($scope, $ionicModal, $localStorage) {
   editModalBool=false;
 
   $scope.deleteButtons=false;
-  $scope.myItems = $localStorage.items; //bring data from local storage to view.
 
+  $scope.myItems = $localStorage.items; //bring data from local storage to view.
 
   /**
    * Modal stuff.
@@ -148,7 +148,14 @@ function myItemsCtrl($scope, $ionicModal, $localStorage) {
    */
 
   function addItem(item) {
-    $localStorage.items.push({itemName: item.name, itemRestaurant: item.rest, itemComments: item.comments, id: Math.floor(Date.now())});
+    if (!$localStorage.hasOwnProperty("items")) {
+      $localStorage.items =[];
+      $localStorage.items.push({itemName: item.name, itemRestaurant: item.rest, itemComments: item.comments, id: Math.floor(Date.now())});
+    }
+    else {
+      $localStorage.items.push({itemName: item.name, itemRestaurant: item.rest, itemComments: item.comments, id: Math.floor(Date.now())});
+    }
+    $scope.myItems = $localStorage.items; //for new user to show on view.
   }
   function editItem(item) {
     var id = item.id;
