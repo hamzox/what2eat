@@ -10,28 +10,43 @@
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
+
   <ion-side-menu side="left">
     <ion-header-bar class="bar-assertive">
-      <h1 class="title">what2eat</h1>
+      <div>
+        <img class="menuLogo" src="../img/logo.png" alt="logo">
+      </div>
     </ion-header-bar>
+
     <ion-content class="custom">
       <ion-list>
+
         <ion-item class="item item-icon-right" menu-close href="#/app/home">
           Home
           <i class="icon ion-home"></i>
         </ion-item>
+
         <ion-item class="item item-icon-right" menu-close href="#/app/search">
-          Search
+          Search Restaurants
           <i class="icon ion-search"></i>
         </ion-item>
+
         <ion-item class="item item-icon-right" menu-close href="#/app/myItems">
           My Items
           <i class="icon ion-heart"></i>
         </ion-item>
+
+        <ion-item class="item item-icon-right" menu-close href="#/app/votes">
+          Today's Votes
+          <i class="icon ion-arrow-graph-up-right"></i>
+        </ion-item>
+
       </ion-list>
+      <div class="myCustomFont headStyle">Contact: hamza.khan@koderlabs.com </div>
     </ion-content>
     <ion-footer-bar class="bar-assertive">
-      <h6 class="title">User: {{myId}}</h6>
+      <h6 class="title">User: {{myId}} <i class="icon ion-person"></i></h6>
     </ion-footer-bar>
   </ion-side-menu>
+
 </ion-side-menus>

@@ -12,7 +12,8 @@ angular.module('starter.routes',[])
       url: '/search',
       views: {
         'menuContent': {
-          templateUrl: 'templates/search.html'
+          templateUrl: 'templates/search.html',
+          controller: 'searchCtrl'
         }
       }
     })
@@ -32,6 +33,14 @@ angular.module('starter.routes',[])
         'menuContent': {
           templateUrl: 'templates/myItems.html',
           controller: 'myItemsCtrl'
+        }
+      }
+    })
+    .state('app.votes',{
+      url:'/votes',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/votes.html'
         }
       }
     })

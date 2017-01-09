@@ -1,8 +1,9 @@
 angular.module('starter.controllers', [])
 
-  .controller('AppCtrl', AppCtrl)
+  .controller ('AppCtrl', AppCtrl)
   .controller ('homeCtrl', homeCtrl)
   .controller ('myItemsCtrl', myItemsCtrl)
+  .controller ('searchCtrl', searchCtrl)
 
 function AppCtrl($scope,$localStorage) {
 
@@ -27,25 +28,6 @@ function AppCtrl($scope,$localStorage) {
 
 function homeCtrl($scope, $firebaseObject,GetDataService) {
 
-  $scope.typeOfMeals = [
-    {
-      id:1,
-      type: "BBQ"
-    },
-    {
-      id:2,
-      type: "Fast Food"
-    },
-    {
-      id:3,
-      type:"Sweet something"
-    },
-    {
-      id:4,
-      type: "Desi Stuff"
-    }
-  ];
-
   $scope.showItems=[];
   $scope.getSelectedItems=[];
   $scope.isLoaded=false;
@@ -58,19 +40,66 @@ function homeCtrl($scope, $firebaseObject,GetDataService) {
 
   $scope.value=8;
   $scope.selectModel=null;
+  $scope.checkbox = [
+    {
+      id:1,
+      name: "BBQ",
+      state: false,
+      icon: 'ion-fork'
+    },
+    {
+      id:2,
+      name: 'Fast Food',
+      state: false,
+      icon: 'ion-pizza'
+    },
+    {
+      id:3,
+      name: 'Sweet Something',
+      state: false,
+      icon: 'ion-icecream'
+    },
+    {
+      id:4,
+      name: 'Desi Stuff',
+      state: false,
+      icon: 'ion-spoon'
+    }
+  ]
 
-  $scope.selectValue = function (selectModel) {
+  $scope.goFunction = function () {
+
     $scope.showItems=[];
-    $scope.getSelectedItems.unshift(selectModel);
-    GetDataService.getRest(obj).then( function(res){
-      for (var x in res['1']) {
-        var iterator = res['1'][x]; //for getting second index of the data, ie: "{'results',Arrays[10]}"
-        if ($scope.getSelectedItems[0].type == iterator.type) {
-          $scope.showItems.push(iterator);
+    $scope.getSelectedItems = $scope.fns.getSelectedCheckbox($scope.checkbox);
+
+    GetDataService.getRest(obj).then( function(res) {
+
+      for (var x in $scope.getSelectedItems) {
+        for (var y in res['1']) {
+
+          var iterator = res['1'][y]; //for getting second index of the data, ie: "{'results',Arrays[10]}"
+          var type = $scope.getSelectedItems[x].name;
+
+          if (type == iterator.type) {
+            $scope.showItems.push(iterator);
+          }
+
         }
       }
     })
   }
+
+  $scope.fns = {
+    getSelectedCheckbox : function (checkbox) {
+      var list = [];
+      for (var x in checkbox) {
+        if (checkbox[x].state) {
+          list.push(checkbox[x]);
+        }
+      }
+      return list;
+    }
+  };
 }
 
 function myItemsCtrl($scope, $ionicModal, $localStorage) {
@@ -171,8 +200,19 @@ function myItemsCtrl($scope, $ionicModal, $localStorage) {
 
 }
 
+function searchCtrl($scope, GetDataService,$firebaseObject) {
 
+  $scope.allRest=[];
+  $scope.searchVal= "";
 
+  //fetching json data from firebase url
+  var ref = firebase.database().ref();
+  var obj = $firebaseObject(ref);
 
-
-
+  GetDataService.getRest(obj).then( function(res) {
+    for (var x in res['1']) {
+      var iterator = res['1'][x];
+      $scope.allRest.push(iterator);
+    }
+  })
+}

@@ -1,14 +1,12 @@
 <ion-view view-title="My Items">
   <ion-content class="headStyle">
     <div class="customAlignment">
-      <button class="button button-block button-assertive item item-icon-right" ng-click="modal.show();addModal()">
-        <i class="icon ion-ios-plus-outline"></i>
-        Add new item
-      </button>
+
       <button class="button button-block button-assertive item item-icon-right" ng-click="deleteButtons = !deleteButtons">
         <i class="icon ion-ios-minus-outline"></i>
         Delete by select
       </button>
+
         <ion-list class="headStyle" show-delete="deleteButtons" ng-show="myItems.length > 0">
           <ion-item class="list list-shadow item-thumbnail-left" ng-repeat="item in myItems | reverseList ">
               <img src="../img/custom-res-logo.png">
@@ -20,5 +18,11 @@
           </ion-item>
         </ion-list>
     </div>
+
   </ion-content>
+
+  <ion-floating-button ng-click="modal.show();addModal()" has-footer="false" button-color="#ef473a" icon="ion-plus" icon-color="#fff">
+
+  </ion-floating-button>
+
 </ion-view>

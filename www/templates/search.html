@@ -3,9 +3,19 @@
     <div class="list list-inset">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search">
+        <input type="text" ng-model="searchVal" placeholder="Search">
       </label>
-      <div class="headStyle">Nothing to show yet.</div>
+      <div class="headStyle" ng-hide="searchVal ==''" ng-keyup="">You searched "{{searchVal}}"</div>
     </div>
+
+    <div class="list customMargin" ng-repeat="data in allRest"  ng-hide="allRest.length == 0">
+      <a class="item item-thumbnail-left" href="#">
+        <img ng-src="{{data.imgSrc}}">
+        <h2><b>{{data.name}}</b></h2>
+        <p>Type: {{data.type}}</p>
+        <p>Delivery time: {{data.deliveryTime}}</p>
+      </a>
+    </div>
+
   </ion-content>
 </ion-view>

@@ -1,11 +1,18 @@
 /** my css **/
-
+.menuLogo {
+  width:135px;
+  height: 20px;
+  margin-top: 10px;
+}
 .headStyle {
   text-align: center;
   padding-top: 20px;
 }
 .customMargin {
   margin-top: 20px;
+}
+.myCustomFont {
+  color: #FFFFFF;
 }
 .customAlignment {
   margin: 0 auto;
@@ -49,4 +56,3 @@
 .custom a {
   color: white;  /*Text color for each item, overrides the color property above*/
 }
-

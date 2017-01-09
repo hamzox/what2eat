@@ -3082,7 +3082,7 @@ function jqLiteInheritedData(element, name, value) {
 
     // If dealing with a document fragment node with a host element, and no parent, use the host
     // element as the parent. This enables directives within a Shadow DOM or polyfilled Shadow DOM
-    // to lookup parent what2eat-controllers
+    // to lookup parent controllers.
     element = element.parentNode || (element.nodeType === NODE_TYPE_DOCUMENT_FRAGMENT && element.host);
   }
 }
@@ -9898,7 +9898,7 @@ function identifierForController(controller, ident) {
  * @name $controllerProvider
  * @description
  * The {@link ng.$controller $controller service} is used by Angular to create new
- * what2eat-controllers
+ * controllers.
  *
  * This provider allows controller registration via the
  * {@link ng.$controllerProvider#register register} method.
@@ -9967,7 +9967,7 @@ function $ControllerProvider() {
      * @return {Object} Instance of given controller.
      *
      * @description
-     * `$controller` service is responsible for instantiating what2eat-controllers
+     * `$controller` service is responsible for instantiating controllers.
      *
      * It's just a simple call to {@link auto.$injector $injector}, but extracted into
      * a service, so that one can override this service with [BC version](https://gist.github.com/1649788).

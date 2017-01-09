@@ -1,4 +1,5 @@
 <ion-modal-view>
+
   <ion-header-bar class="bar bar-header bar-assertive">
     <h1 class="title">{{title}}</h1>
     <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
@@ -18,6 +19,12 @@
         <span class="input-label" ><b>Comments:</b></span>
         <input ng-model="newItem.comments" type="text" placeholder="Ratings out of 5 etc">
       </label>
+
+      <!--<label class="item item-input">-->
+        <!--<span class="input-label" ><b>Upload picture:</b></span>-->
+        <!--<input ng-model="newItem.file" type="file" placeholder="example.png/123koder.jpg">-->
+      <!--</label>-->
+
       <button class="button button-full button-assertive" ng-click="updateList(newItem)">{{Button}}</button>
     </div>
   </ion-content>
