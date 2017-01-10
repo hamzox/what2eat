@@ -29,25 +29,25 @@
 
 
 
-      <!-- Loading data spinner -->
-      <div class="headStyle" ng-show="!isLoaded" >
-        <ion-spinner icon="android" class="spinner-assertive"></ion-spinner>
-      </div>
+      <!--&lt;!&ndash; Loading data spinner &ndash;&gt;-->
+      <!--<div class="headStyle" ng-show="!isLoaded" >-->
+        <!--<ion-spinner icon="android" class="spinner-assertive"></ion-spinner>-->
+      <!--</div>-->
 
-      <!-- Results for selected type -->
-      <h4 ng-show="isLoaded == true && showItems.length>0" class="headStyle">Showing restaurants for selected types</h4>
-      <div class="list customMargin" ng-repeat="data in showItems"  ng-hide="showItems.length == 0">
-        <a class="item item-thumbnail-left" href="#">
-          <img ng-src="{{data.imgSrc}}">
-          <h2><b>{{data.name}}</b></h2>
-          <p>Type: {{data.type}}</p>
-          <p>Delivery time: {{data.deliveryTime}}</p>
-        </a>
-      </div>
+      <!--&lt;!&ndash; Results for selected type &ndash;&gt;-->
+      <!--<h4 ng-show="isLoaded == true && showItems.length>0" class="headStyle">Showing restaurants for selected types</h4>-->
+      <!--<div class="list customMargin" ng-repeat="data in showItems"  ng-hide="showItems.length == 0">-->
+        <!--<a class="item item-thumbnail-left" href="#">-->
+          <!--<img ng-src="{{data.imgSrc}}">-->
+          <!--<h2><b>{{data.name}}</b></h2>-->
+          <!--<p>Type: {{data.type}}</p>-->
+          <!--<p>Delivery time: {{data.deliveryTime}}</p>-->
+        <!--</a>-->
+      <!--</div>-->
 
-      <div class="headStyle" ng-show="getSelectedItems.length == 0 && showItems.length == 0 && isLoaded">
-        No restaurants available for selected items.
-      </div>
+      <!--<div class="headStyle" ng-show="getSelectedItems.length == 0 && showItems.length == 0 && isLoaded">-->
+        <!--No restaurants available for selected items.-->
+      <!--</div>-->
     </div>
 
 

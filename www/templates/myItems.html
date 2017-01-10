@@ -13,7 +13,7 @@
               <h2><b>{{item.itemName}}</b></h2>
               <p>{{item.itemRestaurant}}</p>
               <ion-delete-button class="ion-minus-circled" ng-click="deleteItem(item)"></ion-delete-button>
-              <ion-option-button class="button-energized" ng-click="deleteItem(item)">Delete</ion-option-button>
+              <ion-option-button class="button-energized" ng-click="showConfirm(item)">Delete</ion-option-button>
               <ion-option-button class="button-assertive" ng-click="modal.show();editModal(item)">Edit</ion-option-button>
           </ion-item>
         </ion-list>

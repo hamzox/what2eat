@@ -1,21 +1,27 @@
-<ion-view view-title="Search">
-  <ion-content class="headStyle">
-    <div class="list list-inset">
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" ng-model="searchVal" placeholder="Search">
-      </label>
-      <div class="headStyle" ng-hide="searchVal ==''" ng-keyup="">You searched "{{searchVal}}"</div>
-    </div>
+<ion-view view-title="Search" class="back">
+  <ion-content>
+    <div class="headStyle customAlignment opacity">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" ng-model="searchVal" placeholder="Search">
+        </label>
+      </div>
+      <div class="headStyle myCustomFont" ng-hide="searchVal ==''">You searched "{{searchVal}}"</div>
+      <div class="list list-shadow customMargin" ng-repeat="data in searchRest | filter:searchVal"  ng-hide="searchRest.length == 0">
 
-    <div class="list customMargin" ng-repeat="data in allRest"  ng-hide="allRest.length == 0">
-      <a class="item item-thumbnail-left" href="#">
-        <img ng-src="{{data.imgSrc}}">
-        <h2><b>{{data.name}}</b></h2>
-        <p>Type: {{data.type}}</p>
-        <p>Delivery time: {{data.deliveryTime}}</p>
-      </a>
-    </div>
 
+        <a class="item item-thumbnail-left" href="#/app/search/{{data.name}}">
+          <img ng-src="{{data.imgSrc}}">
+          <h2><b>{{data.name}}</b></h2>
+          <p>Type: {{data.type}}</p>
+          <p>Delivery time: {{data.time}}</p>
+        </a>
+
+
+      </div>
+    </div>
   </ion-content>
+  <ion-floating-button ng-click="" has-footer="false" button-color="#ef473a" icon="ion-ios-loop-strong" icon-color="#fff">
+  </ion-floating-button>
 </ion-view>

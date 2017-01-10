@@ -102,7 +102,7 @@ function homeCtrl($scope, $firebaseObject,GetDataService) {
   };
 }
 
-function myItemsCtrl($scope, $ionicModal, $localStorage) {
+function myItemsCtrl($scope, $ionicModal, $localStorage, $ionicPopup) {
   var addModalBool,editModalBool;
 
   //some important initializations.
@@ -133,7 +133,7 @@ function myItemsCtrl($scope, $ionicModal, $localStorage) {
   $scope.editModal = function (onItem) {
     $scope.newItem = {};
     $scope.title="Edit item";
-    $scope.Button="Edit";
+    $scope.Button="Save";
     $scope.newItem.name = onItem.itemName;
     $scope.newItem.rest = onItem.itemRestaurant;
     $scope.newItem.comments = onItem.comments;
@@ -172,6 +172,24 @@ function myItemsCtrl($scope, $ionicModal, $localStorage) {
     $scope.modal.hide();
   };
 
+
+  $scope.showConfirm = function(item) {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'ARE YOU SURE?',
+      template: 'Are you sure you want to delete this item?',
+      buttons: [
+        { text: 'Cancel' },
+        {
+          text: 'Delete',
+          type: 'button-assertive',
+          onTap: function() {
+            $scope.deleteItem(item);
+        }
+        },
+      ]
+    });
+  };
+
   /**
    * EO | items controller functions.
    */
@@ -203,6 +221,7 @@ function myItemsCtrl($scope, $ionicModal, $localStorage) {
 function searchCtrl($scope, GetDataService,$firebaseObject) {
 
   $scope.allRest=[];
+  $scope.searchRest=[];
   $scope.searchVal= "";
 
   //fetching json data from firebase url
@@ -213,6 +232,14 @@ function searchCtrl($scope, GetDataService,$firebaseObject) {
     for (var x in res['1']) {
       var iterator = res['1'][x];
       $scope.allRest.push(iterator);
+      $scope.searchRest.push({name: iterator.name, type: iterator.type, time: iterator.deliveryTime, imgSrc: iterator.imgSrc}); //for searching according to name,type and time only in the search bar.
     }
-  })
+    console.log($scope.searchRest);
+  });
+
+  function filterDelivery(items) {
+    var newArr = items.filter(function (item) {
+
+    });
+  }
 }

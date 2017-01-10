@@ -18,6 +18,28 @@ angular.module('starter.routes',[])
       }
     })
 
+
+
+
+
+
+    .state('app.single', {
+      url: '/search/:restdetail',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/w2e-rest-detail.html'
+        }
+      }
+    })
+
+
+
+
+
+
+
+
+
     .state('app.home', {
       url: '/home',
       views: {

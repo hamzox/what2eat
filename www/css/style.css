@@ -1,4 +1,12 @@
 /** my css **/
+.back {
+  /*background: url('https://s-media-cache-ak0.pinimg.com/736x/72/43/4e/72434efa188945df8b989beacc3bde42.jpg');*/
+  /*background-repeat: no-repeat;*/
+  /*background-size: cover;*/
+}
+.opacity {
+  opacity: 0.9;
+}
 .menuLogo {
   width:135px;
   height: 20px;
