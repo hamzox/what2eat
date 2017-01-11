@@ -26,9 +26,8 @@ function AppCtrl($scope,$localStorage) {
   }
 }
 
-function homeCtrl($scope, $firebaseObject,GetDataService) {
+function homeCtrl($scope, $firebaseObject,GetDataService,$ionicPopup) {
 
-  $scope.showItems=[];
   $scope.getSelectedItems=[];
   $scope.isLoaded=false;
 
@@ -36,9 +35,7 @@ function homeCtrl($scope, $firebaseObject,GetDataService) {
   var ref = firebase.database().ref();
   var obj = $firebaseObject(ref);
 
-  GetDataService.loadData(obj,$scope);
-
-  $scope.value=8;
+  $scope.value=6;
   $scope.selectModel=null;
   $scope.checkbox = [
     {
@@ -65,31 +62,38 @@ function homeCtrl($scope, $firebaseObject,GetDataService) {
       state: false,
       icon: 'ion-spoon'
     }
-  ]
+  ];
 
-  $scope.goFunction = function () {
+  GetDataService.getRest(obj,$scope).then( function(res) { //load all data from firebase
+    $scope.allRest=[];
+    for (var i in res['1']) {
+      var iterator = res['1'][i];
+      $scope.allRest.push(iterator);
+    }
+  })
 
-    $scope.showItems=[];
+  $scope.suggestMe = function () {
+
+    var list = [];
     $scope.getSelectedItems = $scope.fns.getSelectedCheckbox($scope.checkbox);
 
-    GetDataService.getRest(obj).then( function(res) {
+    for (var x in $scope.getSelectedItems) {
+      for (var y in $scope.allRest) {
 
-      for (var x in $scope.getSelectedItems) {
-        for (var y in res['1']) {
+        var iterator = $scope.allRest[y];
+        var type = $scope.getSelectedItems[x].name;
 
-          var iterator = res['1'][y]; //for getting second index of the data, ie: "{'results',Arrays[10]}"
-          var type = $scope.getSelectedItems[x].name;
-
-          if (type == iterator.type) {
-            $scope.showItems.push(iterator);
-          }
-
+        if (type == iterator.type) {
+          list.push(iterator);
         }
+
       }
-    })
-  }
+    }
+    return list;
+  };
 
   $scope.fns = {
+
     getSelectedCheckbox : function (checkbox) {
       var list = [];
       for (var x in checkbox) {
@@ -98,8 +102,43 @@ function homeCtrl($scope, $firebaseObject,GetDataService) {
         }
       }
       return list;
+    },
+    showConfirm : function() {
+      $scope.showRest = $scope.suggestMe();
+      if ($scope.isLoaded && $scope.showRest.length>0 && $scope.value <= 6) {
+        var magic = Math.floor(Math.random() * $scope.showRest.length) + 0;
+        var suggest = $scope.showRest[magic].name.toString();
+
+        var confirmPopup = $ionicPopup.confirm({
+          title: "It's "+suggest+"!",
+          template:'You can order "<b>'+suggest+'</b>" today!' ,
+          buttons: [
+            { text: 'Cancel' },
+            {
+              text: 'Order',
+              type: 'button-assertive',
+              onTap: function() {
+                console.log("Thank you for ordering!");
+              }
+            },
+          ]
+        });
+      }
+      else {
+        var confirmPopup = $ionicPopup.confirm({
+          title: "Sorry!",
+          template: "<div class='text-center'>Please select something</div>",
+          buttons: [
+            {
+              text: 'Cancel',
+              type: 'button-assertive'
+            }
+          ]
+        })
+      }
     }
   };
+
 }
 
 function myItemsCtrl($scope, $ionicModal, $localStorage, $ionicPopup) {

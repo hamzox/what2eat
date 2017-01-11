@@ -1,22 +1,19 @@
 angular.module('starter.services', [])
 
-  .service('GetDataService'  ,function() {
+  .service('GetDataService' ,function() {
     var vm = this;
-    vm.loadData = function (obj,scope) {
-      obj.$loaded().then(function() {
-        scope.isLoaded=true;
-        console.log("Loaded!");
-      })
-    };
-    vm.getRest = function (obj) {
+
+    vm.getRest = function (obj,scope) {
       var list=[];
       return new Promise(function (resolve,reject) {
         obj.$loaded().then(function(res) {
           if (res) {
-            //To iterate the key/value pairs of the object, use angular.forEach()
-            angular.forEach(res.restaurants, function(value, key) {
+              angular.forEach(res.restaurants, function(value, key) {
               list.push(key,value);
             });
+            scope.isLoaded = true;
+            console.log("Loaded!");
+
             resolve(list);
           }
           else {

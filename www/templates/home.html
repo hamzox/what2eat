@@ -19,35 +19,20 @@
       <div class="customMargin">
 
         <ion-list>
-          <ion-checkbox ng-repeat="check in checkbox track by check.id" class="checkbox-assertive" ng-model="check.state"> {{check.name}}  <i class="icon {{check.icon}}"></i></ion-checkbox>
+          <ion-checkbox ng-repeat="check in checkbox track by check.id" class="checkbox-assertive" ng-model="check.state">
+            {{check.name}}
+
+            <i class="icon {{check.icon}}"></i>
+          </ion-checkbox>
         </ion-list>
-        <button class="button button-block button-assertive item item-icon-right" ng-click="goFunction()">
+
+        <div class="headStyle"><ion-spinner ng-show="!isLoaded" icon="android" class="spinner-assertive"></ion-spinner></div>
+        <button ng-show="isLoaded" class="button button-block button-assertive item item-icon-right" ng-click="fns.showConfirm()">
           <i class="icon ion-ios-arrow-right"></i>
           Go!
         </button>
       <!-- EO | User Input -->
 
-
-
-      <!--&lt;!&ndash; Loading data spinner &ndash;&gt;-->
-      <!--<div class="headStyle" ng-show="!isLoaded" >-->
-        <!--<ion-spinner icon="android" class="spinner-assertive"></ion-spinner>-->
-      <!--</div>-->
-
-      <!--&lt;!&ndash; Results for selected type &ndash;&gt;-->
-      <!--<h4 ng-show="isLoaded == true && showItems.length>0" class="headStyle">Showing restaurants for selected types</h4>-->
-      <!--<div class="list customMargin" ng-repeat="data in showItems"  ng-hide="showItems.length == 0">-->
-        <!--<a class="item item-thumbnail-left" href="#">-->
-          <!--<img ng-src="{{data.imgSrc}}">-->
-          <!--<h2><b>{{data.name}}</b></h2>-->
-          <!--<p>Type: {{data.type}}</p>-->
-          <!--<p>Delivery time: {{data.deliveryTime}}</p>-->
-        <!--</a>-->
-      <!--</div>-->
-
-      <!--<div class="headStyle" ng-show="getSelectedItems.length == 0 && showItems.length == 0 && isLoaded">-->
-        <!--No restaurants available for selected items.-->
-      <!--</div>-->
     </div>
 
 
