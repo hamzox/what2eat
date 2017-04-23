@@ -45,8 +45,9 @@
   color: #FFFFFF;
 }
 .customAlignment {
-  margin: 0 auto;
+  margin: 15px auto 50px auto;
   width: 90%;
+  padding-bottom: 40px;
 }
 .list-shadow {
   box-shadow: 0px 1px 15px -5px rgba(0,0,0,0.92);

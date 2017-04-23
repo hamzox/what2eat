@@ -9,7 +9,7 @@
 
         <ion-list class="headStyle" show-delete="deleteButtons" ng-show="itemsCtrl.myItems.length > 0">
           <ion-item class="list list-shadow item-thumbnail-left" ng-repeat="item in itemsCtrl.myItems | reverseList ">
-              <img src="../img/custom-res-logo.png">
+              <img src="img/custom-res-logo.png">
               <h2><b>{{item.itemName}}</b></h2>
               <p>{{item.itemRestaurant}}</p>
               <ion-delete-button class="ion-minus-circled" ng-click="itemsCtrl.deleteItem(item)"></ion-delete-button>

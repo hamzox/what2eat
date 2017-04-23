@@ -4,6 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+// require('angular-promise-polyfill');
+
 angular.module('starter', [
     'ionic', ,
     'ion-floating-menu',
@@ -12,7 +14,7 @@ angular.module('starter', [
     'starter.services',
     'ngStorage',
     'starter.filters',
-    'firebase'
+    'firebase',
   ])
 
   .run(function ($ionicPlatform) {

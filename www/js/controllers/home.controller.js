@@ -123,7 +123,7 @@ function homeController($scope, $firebaseObject, GetDataService, $ionicPopup) {
   }
 
   function initRestaurantData() {
-    GetDataService.getRest(obj, $scope).then(function (res) { //load all data from firebase
+    GetDataService.getRest(obj,$scope).then(function (res) { //load all data from firebase
       $scope.allRest = [];
       for (var i in res['1']) {
         var iterator = res['1'][i];

@@ -1,11 +1,11 @@
 angular.module('starter.services', [])
 
-  .service('GetDataService' ,function() {
+  .service('GetDataService', function ($q) {
     var vm = this;
 
     vm.getRest = function (obj,scope) {
       var list=[];
-      return new Promise(function (resolve,reject) {
+      return $q(function (resolve,reject) {
         obj.$loaded().then(function(res) {
           if (res) {
               angular.forEach(res.restaurants, function(value, key) {
@@ -22,15 +22,14 @@ angular.module('starter.services', [])
         })
       });
     }
-
-    vm.getVotes = function (obj,scope) {
-      var list=[];
-      return new Promise(function (resolve,reject) {
-        obj.$loaded().then(function(res) {
+    vm.getVotes = function (obj, scope) {
+      var list = [];
+      return $q(function (resolve, reject) {
+        obj.$loaded().then(function (res) {
           if (res) {
-            var polls ={};
+            var polls = {};
             polls.votes = res.polls;
-            scope.showLoader =false;
+            scope.showLoader = false;
             resolve(polls);
           }
           else {
