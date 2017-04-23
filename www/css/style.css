@@ -4,6 +4,28 @@
   /*background-repeat: no-repeat;*/
   /*background-size: cover;*/
 }
+#votes-view .count-label {
+  /*border-radius: 50%;*/
+  height: 36px;
+  width:36px;
+  position: absolute;
+  right: 3px;
+  bottom: 2px;
+
+  background-color: rgb(239, 71, 58);
+}
+#votes-view .count-label span {
+  vertical-align: -9px;
+  color: white;
+}
+#votes-view i.ion-person{
+  position: absolute;
+  right: 41px;
+  bottom: -5px;
+  color: rgb(239, 71, 58);
+  font-size: 65px;
+  opacity: 0.5;
+}
 .opacity {
   opacity: 0.9;
 }
@@ -63,4 +85,8 @@
 .custom p,
 .custom a {
   color: white;  /*Text color for each item, overrides the color property above*/
+}
+
+.button {
+  border-radius:0;
 }

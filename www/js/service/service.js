@@ -22,5 +22,23 @@ angular.module('starter.services', [])
         })
       });
     }
-  })
+
+    vm.getVotes = function (obj,scope) {
+      var list=[];
+      return new Promise(function (resolve,reject) {
+        obj.$loaded().then(function(res) {
+          if (res) {
+            var polls ={};
+            polls.votes = res.polls;
+            scope.showLoader =false;
+            resolve(polls);
+          }
+          else {
+            reject("Failure!");
+          }
+        })
+      });
+    }
+
+  });
 

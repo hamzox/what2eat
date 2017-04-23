@@ -1,40 +1,35 @@
 <ion-view class="bar-calm" view-title="Home">
   <ion-content>
-
     <div class="customMargin" style="text-align: center">
-      <img src="../img/logo.png" style="width:350px" alt="">
+      <img src="../img/logo.png" style="width:60%" alt="">
     </div>
-
-
     <div class="customAlignment">
       <!-- User Input  -->
       <h4 class="headStyle"><b>Hunger level? </b></h4>
       <div class="range range-royal customMargin">
         <span>0</span>
-        <input class="range range-assertive" type="range" name="hunger" ng-model="value" min="0" max="10">
-        <span>{{value}}</span>
+        <input class="range range-assertive" type="range" name="hunger" ng-model="homeCtrl.value" min="0" max="10">
+        <span>{{homeCtrl.value}}</span>
       </div>
-
       <h4 class="headStyle"><b>What to eat? </b></h4>
       <div class="customMargin">
-
         <ion-list>
-          <ion-checkbox ng-repeat="check in checkbox track by check.id" class="checkbox-assertive" ng-model="check.state">
+          <ion-checkbox ng-repeat="check in homeCtrl.checkbox track by check.id" class="checkbox-assertive"
+                        ng-model="check.state">
             {{check.name}}
-
             <i class="icon {{check.icon}}"></i>
           </ion-checkbox>
         </ion-list>
 
-        <div class="headStyle"><ion-spinner ng-show="!isLoaded" icon="android" class="spinner-assertive"></ion-spinner></div>
-        <button ng-show="isLoaded" class="button button-block button-assertive item item-icon-right" ng-click="fns.showConfirm()">
+        <div class="headStyle">
+          <ion-spinner ng-show="!isLoaded" icon="android" class="spinner-assertive"></ion-spinner>
+        </div>
+        <button ng-show="isLoaded" class="button button-block button-assertive item item-icon-right"
+                ng-click="homeCtrl.fns.showConfirm()">
           <i class="icon ion-ios-arrow-right"></i>
-          Go!
+          SUGGEST ME
         </button>
-      <!-- EO | User Input -->
-
-    </div>
-
-
+        <!-- EO | User Input -->
+      </div>
   </ion-content>
 </ion-view>

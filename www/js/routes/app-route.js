@@ -17,12 +17,6 @@ angular.module('starter.routes',[])
         }
       }
     })
-
-
-
-
-
-
     .state('app.single', {
       url: '/search/:restdetail',
       views: {
@@ -32,20 +26,13 @@ angular.module('starter.routes',[])
       }
     })
 
-
-
-
-
-
-
-
-
     .state('app.home', {
       url: '/home',
       views: {
         'menuContent': {
           templateUrl: 'templates/home.html',
-          controller: 'homeCtrl'
+          controller: 'homeController',
+          controllerAs: 'homeCtrl'
         }
       }
     })
@@ -54,7 +41,8 @@ angular.module('starter.routes',[])
       views: {
         'menuContent': {
           templateUrl: 'templates/myItems.html',
-          controller: 'myItemsCtrl'
+          controller: 'myItemsCtrl',
+          controllerAs: 'itemsCtrl'
         }
       }
     })
@@ -62,9 +50,11 @@ angular.module('starter.routes',[])
       url:'/votes',
       views: {
         'menuContent': {
-          templateUrl: 'templates/votes.html'
+          templateUrl: 'templates/votes.html',
+          controller: 'votesController',
+          controllerAs: 'votesCtrl'
         }
       }
-    })
+    });
   $urlRouterProvider.otherwise('/app/home');
 });

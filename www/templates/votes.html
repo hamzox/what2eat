@@ -1,5 +1,29 @@
-<ion-view view-title="Votes">
+<ion-view view-title="Votes" id="votes-view">
   <ion-content class="headStyle">
-    Nothing to show yet.
+    <div class="customAlignment">
+      <div ng-show="showLoader">
+        <ion-spinner icon="android" class="spinner-assertive"></ion-spinner>
+      </div>
+      <ion-list class="headStyle" ng-show="votesCtrl.voteList.length > 0 && !showLoader">
+        <ion-item class="list list-shadow item-thumbnail-left" ng-repeat="vote in votesCtrl.voteList">
+          <img src="../img/poll-placeholder.png">
+          <h2><b>{{vote.item_name}}</b></h2>
+          <p>{{vote.item_rest}}</p>
+          <div ng-show="votesCtrl.showOptionButton(vote)">
+            <i class="icon ion-person"></i>
+          </div>
+          <div class="count-label">
+            <span>
+            {{vote.voteCount}}
+            </span>
+          </div>
+          <ion-option-button ng-show="!votesCtrl.showOptionButton(vote)" class="button-energized" ng-click="votesCtrl.onVote(vote)">
+            Vote me!</ion-option-button>
+        </ion-item>
+      </ion-list>
+    </div>
   </ion-content>
+  <ion-floating-button ng-click="votesCtrl.onRefreshList()" has-footer="false" button-color="#ef473a" icon="ion-ios-loop-strong" icon-color="#fff">
+  </ion-floating-button>
 </ion-view>
+

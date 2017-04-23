@@ -7,18 +7,13 @@
           <input type="text" ng-model="searchVal" placeholder="Search">
         </label>
       </div>
-      <div class="headStyle myCustomFont" ng-hide="searchVal ==''">You searched "{{searchVal}}"</div>
-      <div class="list list-shadow customMargin" ng-repeat="data in searchRest | filter:searchVal"  ng-hide="searchRest.length == 0">
-
-
+      <div class="list list-shadow customMargin" ng-repeat="data in getRest | filter:searchVal"  ng-hide="searchRest.length == 0">
         <a class="item item-thumbnail-left" href="#/app/search/{{data.name}}">
           <img ng-src="{{data.imgSrc}}">
           <h2><b>{{data.name}}</b></h2>
           <p>Type: {{data.type}}</p>
           <p>Delivery time: {{data.time}}</p>
         </a>
-
-
       </div>
     </div>
   </ion-content>
