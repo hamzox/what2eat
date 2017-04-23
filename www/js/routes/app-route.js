@@ -7,7 +7,6 @@ angular.module('starter.routes',[])
       templateUrl: 'templates/menu.html',
       controller: 'AppCtrl'
     })
-
     .state('app.search', {
       url: '/search',
       views: {
@@ -25,7 +24,6 @@ angular.module('starter.routes',[])
         }
       }
     })
-
     .state('app.home', {
       url: '/home',
       views: {

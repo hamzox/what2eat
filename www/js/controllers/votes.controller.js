@@ -8,10 +8,6 @@ angular.module('starter.controllers')
 
 function votesController($scope, $firebaseObject,GetDataService,$rootScope,$localStorage,$ionicListDelegate,$timeout) {
 
-  $scope.clickMe = function () {
-    $scope.bool = !$scope.bool;
-  };
-
   var vm = this;
   vm.voteCastObj = $localStorage.userVote;
   vm.onRefreshList = onRefreshList;
@@ -31,13 +27,15 @@ function votesController($scope, $firebaseObject,GetDataService,$rootScope,$loca
 
   function initVotes() {
     $scope.showLoader = true;
-    GetDataService.getVotes(obj,$scope).then(function(res) {
+    GetDataService.getVotes(obj,$scope)
+      .then(function(res) {
       if (res){
         vm.voteList = formayOverKeys(res);
         $scope.$apply();
 
       }
-    }).catch(function (res) {
+    })
+      .catch(function (res) {
       $scope.showLoader = false;
       console.log("There was an error will loading votes");
     })
@@ -63,6 +61,7 @@ function votesController($scope, $firebaseObject,GetDataService,$rootScope,$loca
     if (!vm.voteCastObj.isVoted) {
       var now = new Date();
       now.toISOString();
+
       var params = {
         user_id: item.user_id,
         item_name: item.item_name,
@@ -72,6 +71,7 @@ function votesController($scope, $firebaseObject,GetDataService,$rootScope,$loca
         voteCount:item.voteCount+1
       };
       var ref_poll = firebase.database().ref('/polls/'+item.user_id);
+
       ref_poll.child('data').set(params);
       $ionicListDelegate.closeOptionButtons();
       $timeout( function(){

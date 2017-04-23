@@ -2,48 +2,47 @@
  * Created by Hamza-PC on 4/22/2017.
  */
 angular.module('starter.controllers')
-.controller ('homeController', homeController);
+  .controller('homeController', homeController);
 
 
-function homeController($scope, $firebaseObject,GetDataService,$ionicPopup) {
+function homeController($scope, $firebaseObject, GetDataService, $ionicPopup) {
 
   var vm = this;
 
   console.log(GetDataService);
 
-
-  vm.getSelectedItems=[];
-  $scope.isLoaded=false;
+  vm.getSelectedItems = [];
+  $scope.isLoaded = false;
 
   //fetching json data from firebase url
   var ref = firebase.database().ref();
   var obj = $firebaseObject(ref);
 
-  vm.value=6;//hunger level value
+  vm.value = 6;//hunger level value
 
   initRestaurantData();
 
   vm.checkbox = [
     {
-      id:1,
+      id: 1,
       name: "BBQ",
       state: false,
       icon: 'ion-fork'
     },
     {
-      id:2,
+      id: 2,
       name: 'Fast Food',
       state: false,
       icon: 'ion-pizza'
     },
     {
-      id:3,
+      id: 3,
       name: 'Sweet Something',
       state: false,
       icon: 'ion-icecream'
     },
     {
-      id:4,
+      id: 4,
       name: 'Desi Stuff',
       state: false,
       icon: 'ion-spoon'
@@ -51,7 +50,7 @@ function homeController($scope, $firebaseObject,GetDataService,$ionicPopup) {
   ];
 
   vm.fns = {
-    getSelectedCheckbox : function (checkbox) {
+    getSelectedCheckbox: function (checkbox) {
       var list = [];
       for (var x in checkbox) {
         if (checkbox[x].state) {
@@ -60,16 +59,25 @@ function homeController($scope, $firebaseObject,GetDataService,$ionicPopup) {
       }
       return list;
     },
-    showConfirm : function() {
+    showConfirm: function () {
 
       vm.showRest = onSuggestMe();
+      if ($scope.isLoaded && vm.showRest.length > 0) {
+        var hunger_level = vm.value;
+        // console.log(vm.showRest);
+        console.log(accHungerLevel(hunger_level));
+        // var magic = Math.floor(Math.random() * vm.showRest.length) + 0;
+        // var suggest = vm.showRest[magic].name.toString();
 
-      if ($scope.isLoaded && vm.showRest.length>0 && vm.value <= 6) {
-        var magic = Math.floor(Math.random() * vm.showRest.length) + 0;
-        var suggest = vm.showRest[magic].name.toString();
+        var magic = Math.floor(Math.random() * accHungerLevel(hunger_level).length) + 0;
+        var suggest = accHungerLevel(hunger_level)[magic].name.toString();
+
+        // var deliveryTime = vm.showRest[magic].deliveryTime;
+
+
         var confirmPopup = $ionicPopup.confirm({
-          title: "It's "+suggest+"!",
-          template:'You can order "<b>'+suggest+'</b>" today!' ,
+          title: "It's " + suggest + "!",
+          template: 'You can order "<b>' + suggest + '</b>" today!',
           buttons: [
             {
               text: 'Cancel'
@@ -77,7 +85,7 @@ function homeController($scope, $firebaseObject,GetDataService,$ionicPopup) {
             {
               text: 'Order',
               type: 'button-assertive',
-              onTap: function() {
+              onTap: function () {
                 console.log("Thank you for ordering!");
               }
             },
@@ -115,12 +123,32 @@ function homeController($scope, $firebaseObject,GetDataService,$ionicPopup) {
   }
 
   function initRestaurantData() {
-    GetDataService.getRest(obj,$scope).then( function(res) { //load all data from firebase
-      $scope.allRest=[];
+    GetDataService.getRest(obj, $scope).then(function (res) { //load all data from firebase
+      $scope.allRest = [];
       for (var i in res['1']) {
         var iterator = res['1'][i];
         $scope.allRest.push(iterator);
       }
     });
+  }
+
+  function accHungerLevel(threshold) {
+    var list = [];
+    var selectedList = onSuggestMe();
+    if (threshold > 6) {
+      for (var counter in selectedList) {
+        if (selectedList[counter].deliveryTime <= 30) {
+          list.push(selectedList[counter]);
+        }
+      }
+    }
+    else if (threshold <= 6) {
+      console.log("asdfas");
+      for (var counter in selectedList) {
+        list.push(selectedList[counter]);
+
+      }
+    }
+    return list;
   }
 }

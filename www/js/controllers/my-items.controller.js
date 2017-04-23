@@ -127,7 +127,7 @@ function myItemsCtrl($scope, $ionicModal, $localStorage, $ionicPopup, $rootScope
     var now = new Date();
     now.toISOString();
 
-    var vote_id = 'vt_'+item.id;
+    //var vote_id = 'vt_'+item.id;
 
     var params = {
       user_id: $localStorage.userId,
@@ -140,13 +140,9 @@ function myItemsCtrl($scope, $ionicModal, $localStorage, $ionicPopup, $rootScope
 
     console.log(params);
     var ref_poll = firebase.database().ref('/polls/'+$localStorage.userId);
-    // var ref_vote = firebase.database().ref('votes/'+vote_id);
-
     ref_poll.child('data').set(params);
-    // ref_vote.child('data').set(params);
 
     $ionicListDelegate.closeOptionButtons();
     $rootScope.$broadcast('votesUpdated',params);
-
   }
 }

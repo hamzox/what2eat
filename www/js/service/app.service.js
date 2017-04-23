@@ -11,10 +11,9 @@ angular.module('starter.services')
       setInterval(function () {
         var vote_date = new Date($localStorage.userVote.time);
         var now = new Date();
-        var diff=new Date(now-vote_date);
-        console.log(diff.getSeconds());
-        // console.log(vote_date.toISOString());
-        // console.log($localStorage.userVote);
+        var diff=new Date(now.getDate()-vote_date.getDate());
+        // console.log($moment);
+
       },5000)
     }
 
