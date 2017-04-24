@@ -24,15 +24,15 @@ function votesController($scope, $firebaseObject,GetDataService,$rootScope,$loca
     initVotes();
   });
 
-
   function initVotes() {
     $scope.showLoader = true;
     GetDataService.getVotes(obj,$scope)
       .then(function(res) {
       if (res){
         vm.voteList = formayOverKeys(res);
-        $scope.$apply();
-
+        $timeout(function () {
+          $scope.$apply();
+        },1000);
       }
     })
       .catch(function (res) {

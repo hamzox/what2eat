@@ -1,8 +1,6 @@
 angular.module('starter.services', [])
-
   .service('GetDataService', function ($q) {
     var vm = this;
-
     vm.getRest = function (obj,scope) {
       var list=[];
       return $q(function (resolve,reject) {
@@ -21,7 +19,7 @@ angular.module('starter.services', [])
           }
         })
       });
-    }
+    };
     vm.getVotes = function (obj, scope) {
       var list = [];
       return $q(function (resolve, reject) {
@@ -37,7 +35,6 @@ angular.module('starter.services', [])
           }
         })
       });
-    }
-
+    };
   });
 
