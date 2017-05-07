@@ -60,21 +60,12 @@ function homeController($scope, $firebaseObject, GetDataService, $ionicPopup) {
       return list;
     },
     showConfirm: function () {
-
       vm.showRest = onSuggestMe();
       if ($scope.isLoaded && vm.showRest.length > 0) {
         var hunger_level = vm.value;
-        // console.log(vm.showRest);
         console.log(accHungerLevel(hunger_level));
-        // var magic = Math.floor(Math.random() * vm.showRest.length) + 0;
-        // var suggest = vm.showRest[magic].name.toString();
-
         var magic = Math.floor(Math.random() * accHungerLevel(hunger_level).length) + 0;
         var suggest = accHungerLevel(hunger_level)[magic].name.toString();
-
-        // var deliveryTime = vm.showRest[magic].deliveryTime;
-
-
         var confirmPopup = $ionicPopup.confirm({
           title: "It's " + suggest + "!",
           template: 'You can order "<b>' + suggest + '</b>" today!',
@@ -83,7 +74,7 @@ function homeController($scope, $firebaseObject, GetDataService, $ionicPopup) {
               text: 'Cancel'
             },
             {
-              text: 'Order',
+              text: 'Okay!',
               type: 'button-assertive',
               onTap: function () {
                 console.log("Thank you for ordering!");

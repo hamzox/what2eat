@@ -28,7 +28,6 @@ function votesController($scope, $firebaseObject,GetDataService,$rootScope,$loca
     initVotes();
   });
 
-
   function initVotes() {
     $scope.showLoader = true;
     vm.voteList=[];
@@ -40,7 +39,6 @@ function votesController($scope, $firebaseObject,GetDataService,$rootScope,$loca
         $timeout(function () {
           $scope.$apply();
         });
-
       }
     })
       .catch(function (res) {
