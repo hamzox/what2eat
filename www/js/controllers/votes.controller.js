@@ -20,6 +20,10 @@ function votesController($scope, $firebaseObject,GetDataService,$rootScope,$loca
 
   initVotes(); //initializing data
 
+  setInterval(function () {
+    initVotes(); //initializing data
+  },10000);
+
   $rootScope.$on('votesUpdated', function () {
     initVotes();
   });
@@ -27,11 +31,15 @@ function votesController($scope, $firebaseObject,GetDataService,$rootScope,$loca
 
   function initVotes() {
     $scope.showLoader = true;
+    vm.voteList=[];
     GetDataService.getVotes(obj,$scope)
       .then(function(res) {
       if (res){
         vm.voteList = formayOverKeys(res);
-        $scope.$apply();
+        console.log("Run!");
+        $timeout(function () {
+          $scope.$apply();
+        });
 
       }
     })

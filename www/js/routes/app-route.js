@@ -52,7 +52,8 @@ angular.module('starter.routes',[])
           controller: 'votesController',
           controllerAs: 'votesCtrl'
         }
-      }
+      },
+      cache:false
     });
   $urlRouterProvider.otherwise('/app/home');
 });

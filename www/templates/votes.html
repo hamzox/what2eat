@@ -7,7 +7,7 @@
       </div>
 
       <ion-list class="headStyle" ng-show="votesCtrl.voteList.length > 0 && !showLoader">
-        <ion-item class="list list-shadow item-thumbnail-left" ng-repeat="vote in votesCtrl.voteList">
+        <ion-item class="list list-shadow item-thumbnail-left" ng-repeat="vote in votesCtrl.voteList | orderBy:vote.voteCount">
           <img src="img/poll-placeholder.png">
           <h2><b>{{vote.item_name}}</b></h2>
           <p>{{vote.item_rest}}</p>

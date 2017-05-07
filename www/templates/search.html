@@ -8,7 +8,7 @@
         </label>
       </div>
       <div class="list list-shadow customMargin" ng-repeat="data in getRest | filter:searchVal"  ng-hide="searchRest.length == 0">
-        <a class="item item-thumbnail-left" href="#/app/search/{{data.name}}">
+        <a class="item item-thumbnail-left" href="#/app/search">
           <img ng-src="{{data.imgSrc}}">
           <h2><b>{{data.name}}</b></h2>
           <p>Type: {{data.type}}</p>
@@ -17,6 +17,6 @@
       </div>
     </div>
   </ion-content>
-  <ion-floating-button ng-click="" has-footer="false" button-color="#ef473a" icon="ion-ios-loop-strong" icon-color="#fff">
-  </ion-floating-button>
+  <!--<ion-floating-button ng-click="" has-footer="false" button-color="#ef473a" icon="ion-ios-loop-strong" icon-color="#fff">-->
+  <!--</ion-floating-button>-->
 </ion-view>
